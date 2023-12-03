@@ -1,0 +1,14 @@
+<!--
+  ROS launch file for launching the TurtleBot3 illumination node.
+
+  Nodes Launched:
+  - turtlebot3_illumination: Launches the TurtleBot3 illumination node.
+
+  Output:
+  - The node's output is directed to the screen.
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_illumination" name="turtlebot3_illumination" output="screen">
+  </node>
+</launch>

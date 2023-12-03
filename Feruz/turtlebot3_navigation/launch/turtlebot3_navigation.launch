@@ -1,0 +1,49 @@
+<!--
+  Overview: 
+  ROS launch file for launching TurtleBot3 navigation including map server, AMCL, move_base, and RViz.
+
+  Configuration:
+  - Arguments:
+    - model: TurtleBot3 model type (default from the TURTLEBOT3_MODEL environment variable).
+    - map_file: Path to the map file (default is the map.yaml in turtlebot3_navigation/maps directory).
+    - open_rviz: Flag to open RViz (default is true).
+    - move_forward_only: Restrict the robot to move forward only (default is false).
+
+  Nodes Launched:
+  - Turtlebot3: Launch file for TurtleBot3 hardware setup.
+  - map_server: ROS map server node.
+  - AMCL: Launch file for Adaptive Monte Carlo Localization.
+  - move_base: Launch file for the move_base node.
+  - rviz: RViz visualization tool.
+-->
+
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Turtlebot3 -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+    <arg name="model" value="$(arg model)" />
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
+  </group>
+</launch>

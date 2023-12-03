@@ -1,0 +1,7 @@
+<!--
+  ROS launch file for launching the TurtleBot3 bumper node.
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_bumper" name="turtlebot3_bumper" output="screen">
+  </

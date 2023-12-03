@@ -1,0 +1,16 @@
+<!--
+  ROS launch file for launching the TurtleBot3 marker server node.
+
+  Nodes Launched:
+  - turtlebot3_marker_server: Launches the TurtleBot3 marker server node.
+
+  Remapping:
+  - The "interactive_marker_velocity_smoother/raw_cmd_vel" topic is remapped to the "cmd_vel" topic.
+
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_marker_server" name="turtlebot3_marker_server">
+    <remap from="interactive_marker_velocity_smoother/raw_cmd_vel" to="cmd_vel"/>
+  </node>
+</launch>

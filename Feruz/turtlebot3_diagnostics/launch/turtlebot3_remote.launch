@@ -1,0 +1,31 @@
+<!--
+  Overview: 
+  ROS launch file for TurtleBot3 robot state publishing and description setup.
+
+  Configuration:
+  - Arguments:
+    - model: TurtleBot3 model type (default from the TURTLEBOT3_MODEL environment variable).
+    - multi_robot_name: Multi-robot name (default is an empty string).
+
+  Included Launch File:
+  - description.launch.xml: Launches the description setup for the TurtleBot3 model.
+    - Argument: model.
+
+  Nodes Launched:
+  - robot_state_publisher: Publishes robot state information for visualization.
+    - Parameters: publish_frequency (50 Hz), tf_prefix (multi_robot_name).
+-->
+
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="multi_robot_name" default=""/>
+
+  <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="tf_prefix" value="$(arg multi_robot_name)"/>
+  </node>
+</launch>

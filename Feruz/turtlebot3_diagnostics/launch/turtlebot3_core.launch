@@ -1,0 +1,20 @@
+<!--
+  Overview: ROS launch file for TurtleBot3 core using rosserial communication.
+
+  Configuration:
+  - Arguments:
+    - multi_robot_name: Specify multi-robot name (default is empty).
+
+  Nodes Launched:
+  - turtlebot3_core: Launches rosserial serial_node.py with specified parameters.
+    - Parameters: port, baud, tf_prefix (based on multi_robot_name).
+-->
+
+<launch>
+<arg name="multi_robot_name" default=""/>
+<node pkg="rosserial_python" type="serial_node.py" name="turtlebot3_core" output="screen">
+  <param name="port" value="/dev/ttyACM0"/>
+  <param name="baud" value="115200"/>
+  <param name="tf_prefix" value="$(arg multi_robot_name)"/>
+</node>
+</launch>

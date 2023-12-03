@@ -1,0 +1,14 @@
+<!--
+  ROS launch file for launching the TurtleBot3 sonar node.
+
+  Nodes Launched:
+  - turtlebot3_sonar: Launches the TurtleBot3 sonar node.
+
+  Output:
+  - The node's output is directed to the screen.
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_sonar" name="turtlebot3_sonar" output="screen">
+  </node>
+</launch>

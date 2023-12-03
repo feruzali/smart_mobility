@@ -1,0 +1,14 @@
+<!--
+  ROS launch file for launching the TurtleBot3 cliff detection node.
+
+  Nodes Launched:
+  - turtlebot3_cliff: Launches the TurtleBot3 cliff detection node.
+
+  Output:
+  - The node's output is directed to the screen.
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_cliff" name="turtlebot3_cliff" output="screen">
+  </node>
+</launch>

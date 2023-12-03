@@ -1,0 +1,14 @@
+<!--
+  ROS launch file for launching the TurtleBot3 obstacle detection node.
+
+  Nodes Launched:
+  - turtlebot3_obstacle: Launches the TurtleBot3 obstacle detection node.
+
+  Output:
+  - The node's output is directed to the screen.
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_obstacle" name="turtlebot3_obstacle" output="screen">
+  </node>
+</launch>

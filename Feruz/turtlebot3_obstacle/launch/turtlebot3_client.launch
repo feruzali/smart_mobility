@@ -1,0 +1,14 @@
+<!--
+  ROS launch file for launching the TurtleBot3 client node.
+
+  Nodes Launched:
+  - turtlebot3_client: Launches the TurtleBot3 client node.
+
+  Output:
+  - The node's output is directed to the screen.
+-->
+
+<launch>
+  <node pkg="turtlebot3_example" type="turtlebot3_client" name="turtlebot3_client" output="screen">
+  </node>
+</launch>

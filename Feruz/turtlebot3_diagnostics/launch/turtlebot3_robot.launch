@@ -1,0 +1,38 @@
+<!--
+  Overview: 
+  ROS launch file for TurtleBot3 core, lidar, diagnostics, and optional camera.
+
+  Configuration:
+  - Arguments:
+    - multi_robot_name: Multi-robot name (default is an empty string).
+    - set_lidar_frame_id: Frame ID for the Lidar (default is "base_scan").
+    - model: TurtleBot3 model type (default from the TURTLEBOT3_MODEL environment variable).
+
+  Included Launch Files:
+  - turtlebot3_core.launch: Launches the TurtleBot3 core configuration.
+    - Argument: multi_robot_name.
+  - turtlebot3_lidar.launch: Launches the Lidar configuration.
+    - Argument: set_frame_id.
+  - turtlebot3_rpicamera.launch (conditional): Launches the Raspberry Pi camera configuration (for waffle_pi model).
+
+  Nodes Launched:
+  - turtlebot3_diagnostics: Launches the TurtleBot3 diagnostics node.
+-->
+
+<launch>
+  <arg name="multi_robot_name" default=""/>
+  <arg name="set_lidar_frame_id" default="base_scan"/>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_core.launch">
+    <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
+  </include>
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_lidar.launch">
+    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+  </include>
+  <node pkg="turtlebot3_bringup" type="turtlebot3_diagnostics" name="turtlebot3_diagnostics" output="screen"/>
+
+  <group if="$(eval model == 'waffle_pi')">
+    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_rpicamera.launch"/>
+  </group>
+</launch>
