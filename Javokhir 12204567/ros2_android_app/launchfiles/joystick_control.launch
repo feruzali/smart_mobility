@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="com.javohirjambulov.rosandroid" type="joystick_node" name="joystick_node" />
+  <!-- Other joystick-related nodes -->
+</launch>
