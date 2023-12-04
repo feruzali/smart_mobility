@@ -9,4 +9,4 @@ Welcome to the TurtleBot Kitchen Waiter project! This project aims to utilize Tu
 ## Team C:
 Javokhir Jambulov 12204567
 Feruz Ubaydullaev 12204578
-
+Pak Tatyana 12200287
