@@ -44,13 +44,18 @@ The ROS2 publisher and subscriber are part of a ROS2 (Robot Operating System 2) 
     source install/setup.bash
     ```
 3. Open two terminal windows.
+   Make sure to install dependencies and sources using the code below:
+-rosdep install -i --from-path src --rosdistro humble -y
+-source /opt/ros/humble/setup.bash
+-source install/setup.bash
+
 4. In the first window, run the ROS2 publisher:
     ```bash
-    ros2 run <your_package_name> minimal_publisher.py
+    ros2 run order talker
     ```
 5. In the second window, run the ROS2 subscriber:
     ```bash
-    ros2 run <your_package_name> minimal_subscriber.py
+    ros2 run order listener
     ```
 
 #### Functionality
