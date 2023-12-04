@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ROS_DISTRO=humble
+
+
+ROS_WS=ros2_ws
+
+# Source ROS 2 distribution
+source /opt/ros/$ROS_DISTRO/setup.bash
+
+# Source your ROS 2 workspace
+source ~/$ROS_WS/install/local_setup.bash
