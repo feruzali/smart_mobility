@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="com.javohirjambulov.rosandroid" type="map_creation_node" name="map_creation_node" />
+  <!-- Other map-related nodes -->
+</launch>
