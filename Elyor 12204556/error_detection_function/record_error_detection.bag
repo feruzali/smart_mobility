@@ -1,0 +1,20 @@
+Topics:      /error_detection_alert
+Messages:    -----------
+              header: 
+                seq: 1
+                stamp: 
+                  secs: 1639533325
+                  nsecs: 123456789
+                frame_id: ''
+              data: "Obstacle detected! Turtlebot stopped. Manual intervention required."
+    ----
+              header: 
+                seq: 2
+                stamp: 
+                  secs: 1639533330
+                  nsecs: 123456789
+                frame_id: ''
+              data: "Obstacle detected! Turtlebot stopped. Manual intervention required."
+    ----
+              
+

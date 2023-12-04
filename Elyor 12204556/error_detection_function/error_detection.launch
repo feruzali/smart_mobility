@@ -1,0 +1,8 @@
+<launch>
+    <!-- Launch the error detection publisher node -->
+    <node pkg="error_detection" type="error_detection_publisher.py" name="error_detection_publisher" output="screen"/>
+
+    <!-- Launch the error detection subscriber node -->
+    <node pkg="error_detection" type="error_detection_subscriber.py" name="error_detection_subscriber" output="screen"/>
+</launch>
+
