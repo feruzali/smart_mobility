@@ -11,7 +11,7 @@ subscriber_node.py: Subscribes to battery level messages and triggers alerts for
                                   Installation
 
 Clone the Repository
-git clone https://github.com/elyor_s/turtlebot_low_battery.git
+git clone [https://github.com/elyor_s/turtlebot_low_battery.git](https://github.com/feruzali/smart_mobility/tree/main/Elyor%2012204556/low_battery_function)
 
 cd turtlebot_low_battery
 Install Dependencies:
