@@ -1,9 +1,10 @@
 Author: Javokhir Jambulov
 
-
 #!/usr/bin/env python
 
 import rospy
+import click
+import pytest
 from sensor_msgs.msg import BatteryState, Imu, LaserScan
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus
 from turtlebot3_msgs.msg import SensorState, VersionInfo
@@ -132,25 +133,30 @@ def msg_pub():
 
     tb3_diagnostics_pub.publish(tb3_diagnostics)
 
-def main():
+@click.command()
+@click.option('--test', is_flag=True, help='Run pytest test')
+def main(test):
     global tb3_diagnostics_pub, tb3_version_info_pub
 
-    rospy.init_node('turtlebot3_diagnostic')
-    nh = rospy.NodeHandle()
+    if test:
+        pytest.main(['-v', __file__])
+    else:
+        rospy.init_node('turtlebot3_diagnostic')
+        nh = rospy.NodeHandle()
 
-    tb3_diagnostics_pub = rospy.Publisher('diagnostics', DiagnosticArray, queue_size=10)
-    tb3_version_info_pub = rospy.Publisher('version_info', VersionInfo, queue_size=10)
+        tb3_diagnostics_pub = rospy.Publisher('diagnostics', DiagnosticArray, queue_size=10)
+        tb3_version_info_pub = rospy.Publisher('version_info', VersionInfo, queue_size=10)
 
-    imu = rospy.Subscriber('imu', Imu, imu_msg_callback)
-    lds = rospy.Subscriber('scan', LaserScan, LDS_msg_callback)
-    tb3_sensor = rospy.Subscriber('sensor_state', SensorState, sensor_state_msg_callback)
-    version = rospy.Subscriber('firmware_version', VersionInfo, firmware_version_msg_callback)
+        rospy.Subscriber('imu', Imu, imu_msg_callback)
+        rospy.Subscriber('scan', LaserScan, LDS_msg_callback)
+        rospy.Subscriber('sensor_state', SensorState, sensor_state_msg_callback)
+        rospy.Subscriber('firmware_version', VersionInfo, firmware_version_msg_callback)
 
-    loop_rate = rospy.Rate(1)
+        loop_rate = rospy.Rate(1)
 
-    while not rospy.is_shutdown():
-        msg_pub()
-        loop_rate.sleep()
+        while not rospy.is_shutdown():
+            msg_pub()
+            loop_rate.sleep()
 
 if __name__ == '__main__':
     main()
