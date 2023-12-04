@@ -10,6 +10,8 @@ Welcome to the TurtleBot Kitchen Waiter project! This project aims to utilize Tu
 
 [Demo Video](https://youtu.be/Cg0WCoUgFKE?si=cj1D53IbV9_amHui)
 
+[2nd Demo Video]([https://youtu.be/Cg0WCoUgFKE?si=cj1D53IbV9_amHui](https://youtu.be/oyBLgSFTnR0))
+
 ## Team C:
 - Javokhir Jambulov 12204567
 - Feruz Ubaydullaev 12204578
