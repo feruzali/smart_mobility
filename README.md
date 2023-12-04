@@ -13,3 +13,4 @@ Welcome to the TurtleBot Kitchen Waiter project! This project aims to utilize Tu
 - Feruz Ubaydullaev 12204578
 - Pak Tatyana 12200287
 - Nartozhieva Nigara 12200276
+- Abror Khasanov 12204542
