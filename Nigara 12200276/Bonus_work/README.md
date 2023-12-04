@@ -1,6 +1,9 @@
 # Voice-Activated Menu Order System
 
-This Python script implements a voice-activated menu order system. Users can place food orders by speaking into a microphone, and the system processes the spoken words to generate a list of ordered items. The script utilizes various libraries for speech recognition, text-to-speech conversion, and fuzzy string matching.
+This is a bonus task that combines three functions: Speech-To-Text, Text-To-Speech, and Order_Confirmation. It was implemented for a better understanding of how our user_interaction functions work together.
+
+This Python script implements a voice-activated menu order system. Users can place food orders by speaking into a microphone, and the system processes the spoken words to generate a list of ordered items. The script utilizes various libraries for speech recognition, text-to-speech conversion, and fuzzy string matching. 
+
 
 ## How it Works
 
