@@ -1,0 +1,10 @@
+pyaudio
+SpeechRecognition
+google-cloud-speech
+wheel
+pocketsphinx
+nltk
+contractions
+TextSearch
+pyparsing
+pyjsgf
