@@ -19,7 +19,7 @@ Run the program install ROS-Android-APP onto your mobile device: Built from sour
 
 ## Currently available ROS Nodes
 
-The following Nodes are currently supported by ROS-Mobile. 
+The following ROS2 function and Nodes are currently supported by ROS-Mobile. 
 
 - Debug (similar to rostopic echo)
 
