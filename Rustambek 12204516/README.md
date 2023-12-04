@@ -8,11 +8,6 @@ The menu app is a simple graphical user interface (GUI) created using Python's T
 - `/home/jvox/Desktop/WS/img/`: This folder contains the images used by the menu app.
 
 #### How to Run
-1. Ensure you have Python installed on your system.
-2. Install the required libraries: Tkinter, Pillow.
-    ```bash
-    pip install tk pillow
-    ```
 3. Run the menu app:
     ```bash
     python menu_app.py
@@ -35,8 +30,8 @@ The menu app is a simple graphical user interface (GUI) created using Python's T
 The ROS2 publisher and subscriber are part of a ROS2 (Robot Operating System 2) system written in Python using the `rclpy` library. It demonstrates a minimal publisher-subscriber architecture, where the publisher sends user-input messages to a topic, and the subscriber processes and logs the received messages.
 
 #### Files
-- `minimal_publisher.py`: Publisher node code.
-- `minimal_subscriber.py`: Subscriber node code.
+- `publisher_member_function.py`: Publisher node code.
+- `subscriber_member_function.py`: Subscriber node code.
 
 #### How to Run
 1. Install ROS2 on your system following the [official ROS2 installation guide](https://docs.ros.org/en/foxy/Installation.html).
