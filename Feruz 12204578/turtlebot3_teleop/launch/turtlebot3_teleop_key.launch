@@ -1,0 +1,22 @@
+<!-- TurtleBot3 Teleoperation Launch Configuration -->
+
+<!--
+Author: Feruz 12204578
+
+This ROS launch file configures and launches the TurtleBot3 teleoperation script using the turtlebot3_teleop_key node.
+It sets the robot model type and launches the teleoperation node with keyboard controls.
+
+Parameters:
+- 'model': Specifies the TurtleBot3 model type [burger, waffle, waffle_pi].
+- 'turtlebot3_teleop_keyboard': Launches the turtlebot3_teleop_key node for teleoperation.
+-->
+
+<launch>
+  <!-- Specify the TurtleBot3 model type -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <param name="model" value="$(arg model)"/>
+
+  <!-- Launch the turtlebot3_teleop_key node for teleoperation -->
+  <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop_keyboard" output="screen">
+  </node>
+</launch>

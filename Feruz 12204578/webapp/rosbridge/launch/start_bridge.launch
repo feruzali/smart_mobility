@@ -1,0 +1,21 @@
+<!-- ROSBridge and ROSWWW Integration Launch Configuration -->
+
+<!--
+Author: Feruz 12204578
+
+This ROS launch file integrates the ROSBridge WebSocket server and the ROSWWW web server.
+It includes the launch configurations for both servers, allowing for seamless communication
+between ROS applications and web interfaces.
+
+Integration Steps:
+1. The launch file includes the configuration for the ROSBridge WebSocket server using 'rosbridge_websocket.launch'.
+2. The launch file includes the configuration for the ROSWWW web server using 'roswww.launch'.
+-->
+
+<launch>
+  <!-- Include ROSBridge WebSocket server configuration -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+  <!-- Include ROSWWW web server configuration -->
+  <include file="$(find roswww)/launch/roswww.launch" />
+</launch>

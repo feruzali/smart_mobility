@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>turtlebot3_teleop</name>
+  <version>1.0.0</version>
+  <description>
+    Provides teleoperation using keyboard for TurtleBot3.
+  </description>
+  <author email="feruz.privet@gmail.com">Feruz</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>geometry_msgs</depend>
+</package>

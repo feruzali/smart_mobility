@@ -1,0 +1,26 @@
+<!-- ROSWWW Server Launch Configuration -->
+
+<!--
+Author: Feruz 12204578
+
+This ROS launch file configures and launches the ROSWWW server, a web server for the Robot Operating System (ROS),
+using the 'roswww' package. The launch file allows for easy customization of key parameters, providing flexibility
+in setting up the web server environment.
+
+-->
+
+<launch>
+  <!-- Default values for configurable parameters -->
+  <arg name="name" default="roswww"/>
+  <arg name="webpath" default="www"/> <!-- Package webroot -->
+  <arg name="cached" default="true"/>
+
+  <arg name="port" default="8085"/>
+  <arg name="start_port" default="$(arg port)" />
+  <arg name="end_port" default="$(arg port)" />
+
+  <!-- Launch the ROSWWW server node with specified parameters -->
+  <node pkg="roswww" type="webserver.py" name="$(arg name)"
+        args="--name $(arg name) --webpath $(arg webpath) --cached $(arg cached)
+              --port $(arg port) --start_port $(arg start_port) --end_port $(arg end_port)" />
+</launch>
