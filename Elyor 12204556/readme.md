@@ -24,4 +24,3 @@ Human-Robot Collaboration: Both functionalities emphasize human-robot collaborat
 
 Installation: Clone this repository and configure ROS environment for usage.
 Launching: Start the ROS Master, initialize nodes for low battery and error detection, ensuring the Turtlebot operates effectively within the restaurant environment.
-Contributions: Contributions and enhancements are welcomed to refine functionalities and improve overall system performance.
