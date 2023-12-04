@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>waiter_bot</name>
+  <version>0.1.0</version>
+  <description>The Waiter Bot ROS package</description>
+  <maintainer email="abbossxon95@gmail.com">Abror Khasanov</maintainer>
+  <license>MIT</license>
+
+  <!-- Dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  
+
+  <!-- Exported Packages -->
+  <export>
+    <!-- The main Python script -->
+    <python path="src/waiter_bot/waiter_bot.py"/>
+
+    <!-- Other configuration files or launch files -->
+    <config-file path="config/waiter_bot_config.yaml"/>
+
+    <!-- Any launch files -->
+    <launch file="launch/waiter_bot_launch_file.launch"/>
+
+    <rosdep name="rospy"/>
+    <rosdep name="std_msgs"/>
+  </export>
+</package>

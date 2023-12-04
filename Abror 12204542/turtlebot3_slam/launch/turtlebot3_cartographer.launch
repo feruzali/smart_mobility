@@ -1,0 +1,49 @@
+<!-- 
+Author: Abror Khasanov (12204542)
+
+Overview: 
+This ROS launch file integrates SLAM (Simultaneous Localization and Mapping) functionality for the TurtleBot3.
+It utilizes the Cartographer package for mapping and localization, along with the move_base package for navigation. 
+Additionally, the flat_world_imu_node is employed to ensure compatibility with flattened IMU data. 
+The launch file includes arguments for the TurtleBot3 model type and the configuration basename for Cartographer.
+
+-->
+
+<launch>
+  <!-- Arguments -->
+  <!-- Define arguments for model type and configuration basename -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
+
+  <!-- move_base -->
+  <!-- Include the move_base launch file with specified model argument -->
+  <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- cartographer_node -->
+  <!-- Run the cartographer_node for SLAM -->
+  <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" 
+        args="-configuration_directory $(find turtlebot3_slam)/config
+              -configuration_basename $(arg configuration_basename)"
+        output="screen">
+    <!-- Remap the IMU topic to a flat IMU topic -->
+    <remap from="/imu" to="/flat_imu"/>
+    <!-- Optional: Remap the points2 topic if needed -->
+    <!-- <remap from="points2" to="/camera/depth/points" /> -->
+  </node>
+
+  <!-- cartographer_occupancy_grid_node -->
+  <!-- Run the cartographer_occupancy_grid_node to generate occupancy grid -->
+  <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node"
+        name="cartographer_occupancy_grid_node" 
+        args="-resolution 0.05" />
+
+  <!-- flat_world_imu_node -->
+  <!-- Run the flat_world_imu_node to flatten the IMU data -->
+  <node pkg="turtlebot3_slam" type="flat_world_imu_node" name="flat_world_imu_node" output="screen">
+    <!-- Remap the IMU topics for compatibility -->
+    <remap from="imu_in" to="/imu" />
+    <remap from="imu_out" to="/flat_imu" />
+  </node>
+</launch>

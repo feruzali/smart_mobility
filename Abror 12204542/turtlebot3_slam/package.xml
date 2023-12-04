@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>turtlebot3_slam</name>
+  <version>1.0.0</version>
+  <description>
+    The turtlebot3_slam package provides roslaunch scripts for starting the SLAM
+  </description>
+  <license>Apache 2.0</license>
+  <author email="abbossxon95@gmail.com">Abror</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <exec_depend>turtlebot3_bringup</exec_depend>
+</package>

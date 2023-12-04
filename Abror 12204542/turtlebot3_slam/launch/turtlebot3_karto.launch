@@ -1,0 +1,25 @@
+<!-- 
+Author: Abror Khasanov (12204542)
+
+Overview:
+This ROS launch file configures SLAM (Simultaneous Localization and Mapping) using Karto Mapper for the TurtleBot3. 
+It sets up parameters for the slam_karto node and loads additional parameters from karto_mapper_params.yaml.
+
+Arguments:
+
+- configuration_basename: Basename for Cartographer configuration file.
+
+-->
+
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
+
+  <!-- slam_karto -->
+  <!-- Run the slam_karto node for SLAM using Karto Mapper -->
+  <node pkg="slam_karto" type="slam_karto" name="slam_karto" output="screen">
+    <!-- Load additional parameters from karto_mapper_params.yaml -->
+    <rosparam command="load" file="$(find turtlebot3_slam)/config/karto_mapper_params.yaml" />
+  </node>
+</launch>

@@ -1,0 +1,41 @@
+<!-- 
+Author: Abror Khasanov (12204542)
+
+Overview:
+This ROS launch file sets up the TurtleBot3 with various SLAM (Simultaneous Localization and Mapping) methods. 
+It includes arguments for TurtleBot3 model, SLAM method, Cartographer configuration basename, and an option to open RViz for visualization.
+
+Arguments:
+- slam_methods: SLAM type [gmapping, cartographer, hector, karto, frontier_exploration].
+- configuration_basename: Basename for Cartographer configuration file.
+- open_rviz: Flag to determine whether to open RViz for visualization.
+
+-->
+
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+  <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
+  <arg name="open_rviz" default="true"/>
+
+  <!-- TurtleBot3 -->
+  <!-- Include the TurtleBot3 bringup launch file with the specified model -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
+  <!-- Include the SLAM launch file based on the selected SLAM method -->
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_$(arg slam_methods).launch">
+    <arg name="model" value="$(arg model)"/>
+    <arg name="configuration_basename" value="$(arg configuration_basename)"/>
+  </include>
+
+  <!-- rviz -->
+  <!-- Launch RViz for visualization if open_rviz is set to true -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_slam)/rviz/turtlebot3_$(arg slam_methods).rviz"/>
+  </group>
+</launch>
