@@ -1,12 +1,14 @@
-Turtlebot Low Battery Package
+          Turtlebot Low Battery Package
 
-Overview:
+                          Overview:
 The Turtlebot Low Battery package contains ROS nodes for simulating low battery alerts and monitoring battery levels of a Turtlebot robot.
 
-Nodes:
+                            Nodes:
 publisher_node.py: Simulates a battery level publisher for the Turtlebot.
+
 subscriber_node.py: Subscribes to battery level messages and triggers alerts for low battery conditions.
-Installation
+
+                                  Installation
 
 Clone the Repository
 git clone https://github.com/your_username/turtlebot_low_battery.git
@@ -19,7 +21,7 @@ Build the Package:
 catkin_make 
 source devel/setup.bash
 
-Usage
+                                  Usage
 
 Running the Nodes
 
