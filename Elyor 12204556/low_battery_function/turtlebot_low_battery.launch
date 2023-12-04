@@ -1,0 +1,8 @@
+<launch>
+    <!-- Start the publisher node -->
+    <node pkg="turtlebot_low_battery" type="publisher_node.py" name="battery_publisher" output="screen"/>
+
+    <!-- Start the subscriber node -->
+    <node pkg="turtlebot_low_battery" type="subscriber_node.py" name="battery_subscriber" output="screen"/>
+</launch>
+

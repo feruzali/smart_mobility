@@ -1,0 +1,13 @@
+path:        record_low_battery.bag
+version:     2.0
+duration:    5.1s
+start:       Dec 04 2023 10:21:42.55 (0.00)
+end:         Dec 01 2023 11:24:11.14 (5.10)
+size:        50.1 KB
+messages:    500
+compression: none [503/503 chunks]
+types:       std_msgs/String [992ce8a1687cec8c8bd883ec73ca41d1]
+             sensor_msgs/BatteryState [476f837fa6771f6e16e3bf4ef96f8770]
+topics:      /battery_status     250 msgs    : sensor_msgs/BatteryState
+             /robot_status       250 msgs    : std_msgs/String
+
