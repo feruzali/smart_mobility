@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Author: Feruz 12204578
 
 """

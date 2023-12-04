@@ -59,7 +59,6 @@ class Obstacle():
             right_lidar_samples = scan.ranges[:right_lidar_samples_ranges]
             scan_filter.extend(left_lidar_samples + right_lidar_samples)
 
-        # Replace Inf values with a maximum range and handle NaN values
         for i in range(samples_view):
             if scan_filter[i] == float('Inf'):
                 scan_filter[i] = 3.5
