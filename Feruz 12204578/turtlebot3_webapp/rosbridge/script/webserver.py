@@ -16,9 +16,10 @@ Overview of Functionality:
 """
 
 # Import necessary modules
+import click
+import roswww
+import rospy
 import argparse  # Module for parsing command-line arguments
-import roswww    # Module for ROS web server functionality
-import rospy     # ROS Python library
 
 def parse_argument(argv):
     """
@@ -44,18 +45,28 @@ def parse_argument(argv):
     # Return parsed arguments
     return parsed_args.name, parsed_args.webpath, (parsed_args.port, parsed_args.start_port, parsed_args.end_port), cached
 
-if __name__ == '__main__':
+@click.command()
+@click.option('--name', default=rospy.get_name(), help='Webserver name')
+@click.option('--port', default=80, type=int, help='Webserver Port number')
+@click.option('--webpath', default='www', help='Package relative path to web pages')
+@click.option('--cached', default='true', help='Static file is cached')
+@click.option('--start_port', default=8000, type=int, help='Setting up port scan range start')
+@click.option('--end_port', default=9000, type=int, help='Setting up port scan range end')
+def run_webserver(name, port, webpath, cached, start_port, end_port):
+    """
+    Run ROSWWW Server
+    """
     # Initialize ROS node named "webserver" with signal handling disabled
     rospy.init_node("webserver", disable_signals=True)
 
-    # Parse command-line arguments
-    name, webpath, port, cached = parse_argument(rospy.myargv()[1:])
-
     # Create ROSWWWServer instance
-    webserver = roswww.ROSWWWServer(name, webpath, port, cached)
+    webserver = roswww.ROSWWWServer(name, webpath, (port, start_port, end_port), cached)
 
     # Log initialization information
     webserver.loginfo("Initialized")
 
     # Start the ROSWWWServer
     webserver.spin()
+
+if __name__ == '__main__':
+    run_webserver()

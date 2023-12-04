@@ -21,6 +21,7 @@ from sensor_msgs.msg import JointState
 from turtlebot3_msgs.msg import SensorState
 import turtlebot3_example.msg 
 import numpy as np
+import click
 
 class Turtlebot3Action(object):
     _feedback = turtlebot3_example.msg.Turtlebot3ActionFeedback()
@@ -166,6 +167,17 @@ class Turtlebot3Action(object):
 
 if __name__ == '__main__':
     # Initialize the ROS node and start the action server
-    rospy.init_node('turtlebot3')
-    server = Turtlebot3Action(rospy.get_name())
-    rospy.spin()
+    @click.command()
+    @click.option('--mode', default=1, help='Patrol mode: 1 for Square, 2 for Triangle, 3 for Circle')
+    @click.option('--length', default=2.0, help='Length of patrol sides')
+    @click.option('--count', default=1, help='Number of patrol repetitions')
+    def run_turtlebot(mode, length, count):
+        rospy.init_node('turtlebot3')
+        server = Turtlebot3Action(rospy.get_name())
+        goal = turtlebot3_example.msg.Turtlebot3ActionGoal()
+        goal.goal.x = mode
+        goal.goal.y = length
+        goal.goal.z = count
+        server.execute_cb(goal)
+
+    run_turtlebot()

@@ -18,7 +18,9 @@ import rospy
 import actionlib
 import turtlebot3_example.msg
 import sys
+import click
 
+# User prompt and information message
 msg = """
 patrol your TurtleBot3!
 -----------------------
@@ -35,50 +37,53 @@ If you want to close, insert 'x'
 """
 
 class Client():
-    def __init__(self):
+    def __init__(self, mode, area, count):
         rospy.loginfo("Waiting for the server...")
-        self.client()
+        self.client(mode, area, count)
 
-    def getkey(self):
-        mode, area, count = input("| mode | area | count |\n").split()
-        mode, area, count = [str(mode), float(area), int(count)]
-
-        if mode == 's':
-            mode = 1
-        elif mode == 't':
-            mode = 2
-        elif mode == 'c':
-            mode = 3
-        elif mode == 'x':
-            self.shutdown()
-        else:
-            rospy.loginfo("You selected the wrong mode.")
-
-        return mode, area, count
-
-    def client(self):
+    def client(self, mode, area, count):
+        # Initialize SimpleActionClient
         client = actionlib.SimpleActionClient('turtlebot3', turtlebot3_example.msg.Turtlebot3Action)
 
-        mode, area, count = self.getkey()
+        # Wait for the server to be available
         client.wait_for_server()
+
+        # Create a goal and send it to the server
         goal = turtlebot3_example.msg.Turtlebot3Goal()
         goal.goal.x = mode
         goal.goal.y = area
         goal.goal.z = count
         client.send_goal(goal)
         rospy.loginfo("Sent goal to the server.")
+
+        # Wait for the result
         client.wait_for_result()
 
+        # Log the result
         rospy.loginfo(client.get_result())
 
     def shutdown(self):
+        # Gracefully shut down the node
         rospy.sleep(1)
 
-if __name__ == '__main__':
+@click.command()
+@click.option('--mode', type=click.Choice(['s', 't', 'c', 'x']), prompt=True, help="Patrol mode: s, t, c, or x to close")
+@click.option('--area', type=float, prompt=True, help="Area value: length of side (m) or radius (m)")
+@click.option('--count', type=int, prompt=True, help="Patrol count")
+def main(mode, area, count):
+    # Initialize the ROS node
     rospy.init_node('turtlebot3_client')
     try:
         while not rospy.is_shutdown():
+            # Display user prompt and information
             print(msg)
-            result = Client()
+            # Create Client instance with provided options
+            result = Client(mode, area, count)
     except:
+        # Handle program closure
         print("Program closed.", file=sys.stderr)
+
+if __name__ == '__main__':
+    # Run the main function
+    main()
+
