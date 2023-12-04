@@ -7,6 +7,7 @@
 Welcome to the TurtleBot Kitchen Waiter project! This project aims to utilize TurtleBot as a waiter in a kitchen environment, showcasing the capabilities of ROS2 in a practical application. By leveraging the functionalities of TurtleBot and ROS2, we aim to demonstrate how robotics can be employed in real-world scenarios, specifically in a restaurant setting.
 
 [Presentation File](https://www.canva.com/design/DAFzXbLTv1E/Bc6-xQ-HKIzXwrdN6RuNnQ/edit?utm_content=DAFzXbLTv1E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
 [Demo Video](https://youtu.be/Cg0WCoUgFKE?si=cj1D53IbV9_amHui)
 
 ## Team C:
