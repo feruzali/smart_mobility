@@ -4,9 +4,7 @@
 
 # Installation
 
-On Ubuntu:
-
-$ apt-get install ros-humble-rosbridge-server
+apt-get install ros-humble-rosbridge-server
 
 # Usage
 
@@ -14,7 +12,7 @@ $ apt-get install ros-humble-rosbridge-server
 
 To test if `rosbridge` can run on your machine and provide http server feature, run a web server from this package by simply running a launch file:
 
-$ ros2 run rosbridge rosbridge
+ros2 run rosbridge rosbridge
 
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt
@@ -83,6 +81,6 @@ When you launch the rosbridge, you can access static pages(html) which are insta
 
 To play with the rostopic, you can launch a simple talker and listener:
 
-$ ros2 run rosbridge start_bridge.launch
+ros2 run rosbridge start_bridge.launch
 
 You can send a message through ROS topic from http://localhost:%PORT_OF_YOURCHOICE%/rosbridge/talker.html. And also, you can subscribe the message on http://localhost:%PORT_OF_YOURCHOICE%/rosbridge/listener.html.
